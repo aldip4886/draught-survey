@@ -23,6 +23,16 @@ describe("semua berkas di content/scenarios", () => {
     const r = scenarioSchema.safeParse(load(f));
     expect(r.success, r.success ? "" : JSON.stringify(r.error.issues, null, 2)).toBe(true);
   });
+
+  // Bila sounding benar persis sama dengan baris tabel kalibrasi, peserta bisa menebaknya
+  // dari tabel dan langkah interpolasi tidak terlatih.
+  it.each(files)("%s: sounding benar tidak sama persis dengan baris tabel kalibrasi", (f) => {
+    const scenario = scenarioSchema.parse(load(f));
+    for (const t of scenario.final.tangki) {
+      const rows = t.kalibrasi.map((r) => r.sounding);
+      expect(rows, `tangki ${t.id}`).not.toContain(t.sounding);
+    }
+  });
 });
 
 describe("SKN-01", () => {

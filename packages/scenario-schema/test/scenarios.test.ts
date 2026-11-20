@@ -2,8 +2,13 @@ import { readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { computeCargo } from "@draught-survey/survey-engine";
-import { scenarioSchema, scenarioToCargoInput } from "../src";
+import {
+  computeCargo,
+  scoreSubmission,
+  STEP_ORDER,
+  type Submission,
+} from "@draught-survey/survey-engine";
+import { scenarioSchema, scenarioToCargoInput, scenarioToScoringKey } from "../src";
 
 const dir = join(dirname(fileURLToPath(import.meta.url)), "../../../content/scenarios");
 const files = readdirSync(dir).filter((f) => f.endsWith(".json"));
@@ -68,5 +73,38 @@ describe("validasi skema menolak data yang salah", () => {
     const s = base();
     s.id = "contoh";
     expect(scenarioSchema.safeParse(s).success).toBe(false);
+  });
+});
+
+describe("SKN-01: penilaian dari berkas skenario", () => {
+  const scenario = scenarioSchema.parse(load("skn-01.json"));
+  const key = scenarioToScoringKey(scenario);
+
+  const perfect = (): Submission => ({
+    draughts: key.draughts,
+    density: key.density,
+    soundings: Object.fromEntries(scenario.final.tangki.map((t) => [t.id, t.sounding])),
+    worksheet: { order: [...STEP_ORDER], signs: key.signs },
+    cargo: key.cargo,
+  });
+
+  it("kunci muatan 31.573,30 t dan rentang lulus 31.415,43–31.731,17 t", () => {
+    expect(key.cargo).toBe(31573.3);
+    expect(key.cargoRange).toEqual({ min: 31415.43, max: 31731.17 });
+  });
+
+  it("bacaan benar: skor penuh dan lulus", () => {
+    const r = scoreSubmission(key, perfect());
+    expect(r.total).toBe(100);
+    expect(r.passed).toBe(true);
+  });
+
+  it("sarat 2 cm meleset dan densitas salah menurunkan skor sesuai rubrik", () => {
+    const s = perfect();
+    s.draughts = { ...key.draughts, mid: { ...key.draughts.mid, port: key.draughts.mid.port + 0.02 } };
+    s.density = 1.016;
+    const r = scoreSubmission(key, s);
+    expect(r.criteria.find((c) => c.id === "draught")!.score).toBe(20.83);
+    expect(r.criteria.find((c) => c.id === "density")!.score).toBe(0);
   });
 });

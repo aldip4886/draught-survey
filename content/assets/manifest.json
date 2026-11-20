@@ -10,7 +10,13 @@
         "anchor_waterline_ref"
       ],
       "polyBudget": 40000,
-      "license": "buatan-sendiri"
+      "license": "buatan-sendiri",
+      "maxExtentMeters": [
+        100,
+        300
+      ],
+      "lengthAxis": "z",
+      "baselineOrigin": true
     },
     "ship-deck": {
       "file": null,
@@ -24,7 +30,12 @@
         "anchor_teleport_deck_1"
       ],
       "polyBudget": 30000,
-      "license": "buatan-sendiri"
+      "license": "buatan-sendiri",
+      "maxExtentMeters": [
+        100,
+        300
+      ],
+      "lengthAxis": "z"
     },
     "survey-boat": {
       "file": null,
@@ -33,40 +44,78 @@
         "anchor_sampler_mount"
       ],
       "polyBudget": 8000,
-      "license": "buatan-sendiri"
+      "license": "buatan-sendiri",
+      "maxExtentMeters": [
+        3,
+        12
+      ],
+      "lengthAxis": "z"
     },
     "water-sampler": {
       "file": null,
-      "anchors": ["anchor_rope_attach"],
+      "anchors": [
+        "anchor_rope_attach"
+      ],
       "polyBudget": 2000,
-      "license": "buatan-sendiri"
+      "license": "buatan-sendiri",
+      "maxExtentMeters": [
+        0.2,
+        2
+      ]
     },
     "hydrometer": {
       "file": null,
       "anchors": [],
       "polyBudget": 1500,
-      "license": "buatan-sendiri"
+      "license": "buatan-sendiri",
+      "maxExtentMeters": [
+        0.1,
+        0.6
+      ]
     },
     "thermometer": {
       "file": null,
       "anchors": [],
       "polyBudget": 1000,
-      "license": "buatan-sendiri"
+      "license": "buatan-sendiri",
+      "maxExtentMeters": [
+        0.1,
+        0.6
+      ]
     },
     "sounding-tape": {
       "file": null,
       "anchors": [],
       "polyBudget": 1500,
-      "license": "buatan-sendiri"
+      "license": "buatan-sendiri",
+      "maxExtentMeters": [
+        0.05,
+        1
+      ]
     }
   },
   "textures": {
-    "sky": { "file": null, "license": "buatan-sendiri" },
-    "hull-paint": { "file": null, "license": "buatan-sendiri" },
-    "deck": { "file": null, "license": "buatan-sendiri" }
+    "sky": {
+      "file": null,
+      "license": "buatan-sendiri"
+    },
+    "hull-paint": {
+      "file": null,
+      "license": "buatan-sendiri"
+    },
+    "deck": {
+      "file": null,
+      "license": "buatan-sendiri"
+    }
   },
   "panoramas": {
-    "boat": { "file": null, "license": "buatan-sendiri" },
-    "deck": { "file": null, "license": "buatan-sendiri" }
+    "boat": {
+      "file": null,
+      "license": "buatan-sendiri"
+    },
+    "deck": {
+      "file": null,
+      "license": "buatan-sendiri"
+    }
   }
 }

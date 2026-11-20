@@ -6,7 +6,7 @@ Aset buatan-sendiri (prosedural, low-poly) dapat diganti dengan aset lain tanpa 
 
 1. Taruh berkas GLB di `content/assets/models/` (tekstur di `textures/`, panorama di `panoramas/`).
 2. Isi `file` pada entri yang bersangkutan di `manifest.json` (mis. `"file": "models/ship-hull.glb"`), dan perbarui `license`.
-3. Jalankan validator aset (tiket penerapan). Ia gagal bila kontrak di bawah dilanggar.
+3. Jalankan `npm run validate` di `packages/asset-contract`. Ia gagal bila kontrak di bawah dilanggar.
 4. `file: null` mengembalikan aset buatan-sendiri.
 
 Aset boleh diganti satu per satu; yang lain tetap memakai aset bawaan.
@@ -25,3 +25,13 @@ Aset boleh diganti satu per satu; yang lain tetap memakai aset bawaan.
 - `file: null` atau berkas gagal dimuat: pakai aset bawaan dan tulis peringatan di konsol. Sesi tidak gagal.
 - Jangkar wajib hilang: validator gagal (di CI dan lokal); di runtime Player pakai aset bawaan untuk model itu.
 - Tidak ada konten katalog modus manipulasi di aset publik.
+
+## Manifest: bidang validasi
+
+Selain `file`, `anchors`, `polyBudget`, dan `license`, tiap model dapat memuat:
+
+- `maxExtentMeters: [min, maks]`: rentang sisi terpanjang model dalam meter. Menangkap model yang diekspor dalam cm atau inci.
+- `lengthAxis`: sumbu tempat sisi terpanjang harus berada (`"z"` untuk kapal dan perahu, karena haluan ke −Z). Menangkap orientasi yang salah.
+- `baselineOrigin`: sisi bawah model harus di y = 0 (lambung).
+
+Skala node akar pada GLB diperhitungkan, jadi model cm yang diskalakan 0,01 lolos. Batas validator: hanya membaca JSON glTF (nama node, jumlah segitiga, kotak batas dari POSITION); animasi dan skin diabaikan, dan ukuran tekstur belum diperiksa.

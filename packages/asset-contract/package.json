@@ -1,0 +1,22 @@
+{
+  "name": "@draught-survey/asset-contract",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "validate": "vite-node src/cli.ts"
+  },
+  "dependencies": {
+    "@draught-survey/survey-engine": "file:../survey-engine",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

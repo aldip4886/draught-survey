@@ -127,3 +127,27 @@ Cek isi 26 issue: tidak ada yang menyatakan dependensi eksplisit ("blocked by" d
 ### 6. Status
 - #7, #4, #5, #6, #2 punya PR (#27–#31). #10, #9, #11, #26 selesai lokal, belum di-push.
 - Menunggu: #3 (uji perangkat oleh pengguna), lalu #8.
+
+---
+
+## Sesi 4 — 2026-11-20, dicatat sesudah #12 (WIB)
+
+**Konteks:** pengguna meminta "lakukan semua langkah berikutnya": push dan PR fase 1, #3, dan fase 2.
+
+### 1. PR fase 1
+- Dibuka #33 (#10), #34 (#9), #35 (#11), #36 (#26); log (PR #32) ter-update. Rantai merge: #28 → #29 → #30 → #33 → #34 → #35 → #36 → #37.
+
+### 2. #3 tidak dikerjakan
+- Gerbang uji fps dan keterbacaan butuh pengguna dengan Quest 2/3, laptop kantor, dan dua pembaca independen. Tidak dapat dilakukan agen; tetap `ready-for-human`.
+
+### 3. #12 Player tracer (branch `issue-12-player-tracer`, commit `66bf60e`, PR #37)
+- `apps/web`: Next.js, briefing → lembar kerja → serahkan → skor. Skor dari survey-engine; format angka Indonesia; penanda "belum divalidasi SME".
+- Diuji di Chrome: alur penuh menghasilkan Lulus 100/100.
+- **Kebocoran kunci ditemukan dan diperbaiki:** `validasi.catatan` SKN-01 memuat "31.573,30" dan tampil ke peserta. Dihapus dari data; tes regresi menolak angka kunci di teks yang tampil.
+- **Bug state:** klik beruntun saling menimpa karena `setForm` memakai state basi; diganti pembaruan fungsional.
+- Keterbatasan: input manual (belum ada pengukuran 3D), tanpa mode latihan/ujian, tanpa penyimpanan sesi.
+
+### 4. Fase 2 dihentikan di sini
+- #13–#20 (Player 3D) bergantung pada stack R3F yang baru dinyatakan layak oleh #3 (spec: "Hanya bagian yang terbukti dipindahkan"). Tidak dimulai.
+- Yang tidak bergantung pada 3D dan bisa dilanjutkan: #21 (mode latihan/ujian), #22 (sesi lokal dan ekspor).
+- #8 (aset visual) juga menunggu #3.

@@ -6,10 +6,13 @@ Aplikasi Next.js (App Router): Player, kelak Portal Trainer, Dashboard kelas, da
 
 Irisan tipis tanpa 3D: briefing → lembar kerja (input manual) → serahkan → skor per kriteria dan status lulus.
 
+Dari root repo (pnpm workspaces + Turborepo):
+
 ```
-npm install
-npm run dev      # http://localhost:3000
-npm test         # format Indonesia dan lembar kerja → penilaian
+pnpm install
+pnpm dev         # http://localhost:3000
+pnpm test        # semua paket; format Indonesia dan lembar kerja → penilaian
+pnpm --filter @draught-survey/web test   # hanya aplikasi ini
 ```
 
 - Skenario dibaca dari `content/scenarios/*.json` dan divalidasi `packages/scenario-schema`. Skenario baru = berkas baru, tanpa perubahan kode.

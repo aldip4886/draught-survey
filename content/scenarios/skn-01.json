@@ -1,0 +1,436 @@
+{
+  "id": "SKN-01",
+  "judul": "Final Survey Pertama",
+  "kegiatan": "muat",
+  "validasi": {
+    "smeValidated": false,
+    "catatan": "Data sintetis disusun agar menghasilkan angka contoh rujukan L1 (31.573,30 t). Belum divalidasi SME."
+  },
+  "kapal": {
+    "nama": "MV Samudra Lestari",
+    "lbp": 180,
+    "setengahLebar": 15,
+    "tanda": {
+      "haluanDiBelakangFp": 3,
+      "buritanDiDepanAp": 6,
+      "tengahDiBelakangMidship": 0.5
+    },
+    "lightship": 7850
+  },
+  "hidrostatik": {
+    "densitasTabel": 1.025,
+    "baris": [
+      {
+        "sarat": 9,
+        "displacement": 34440,
+        "tpc": 50.7,
+        "lcf": -1.5,
+        "mtc": 471.156
+      },
+      {
+        "sarat": 9.1,
+        "displacement": 34960,
+        "tpc": 50.8,
+        "lcf": -1.6,
+        "mtc": 474.956
+      },
+      {
+        "sarat": 9.2,
+        "displacement": 35480,
+        "tpc": 50.9,
+        "lcf": -1.7,
+        "mtc": 478.756
+      },
+      {
+        "sarat": 9.3,
+        "displacement": 36000,
+        "tpc": 51,
+        "lcf": -1.8,
+        "mtc": 482.556
+      },
+      {
+        "sarat": 9.4,
+        "displacement": 36520,
+        "tpc": 51.1,
+        "lcf": -1.9,
+        "mtc": 486.356
+      },
+      {
+        "sarat": 9.5,
+        "displacement": 37040,
+        "tpc": 51.2,
+        "lcf": -2,
+        "mtc": 490.156
+      },
+      {
+        "sarat": 9.6,
+        "displacement": 37560,
+        "tpc": 51.3,
+        "lcf": -2.1,
+        "mtc": 493.956
+      },
+      {
+        "sarat": 9.7,
+        "displacement": 38080,
+        "tpc": 51.4,
+        "lcf": -2.2,
+        "mtc": 497.756
+      },
+      {
+        "sarat": 9.8,
+        "displacement": 38600,
+        "tpc": 51.5,
+        "lcf": -2.3,
+        "mtc": 501.556
+      },
+      {
+        "sarat": 9.9,
+        "displacement": 39120,
+        "tpc": 51.6,
+        "lcf": -2.4,
+        "mtc": 505.356
+      },
+      {
+        "sarat": 10,
+        "displacement": 39640,
+        "tpc": 51.7,
+        "lcf": -2.5,
+        "mtc": 509.156
+      },
+      {
+        "sarat": 10.1,
+        "displacement": 40160,
+        "tpc": 51.8,
+        "lcf": -2.6,
+        "mtc": 512.956
+      },
+      {
+        "sarat": 10.2,
+        "displacement": 40680,
+        "tpc": 51.9,
+        "lcf": -2.7,
+        "mtc": 516.756
+      },
+      {
+        "sarat": 10.3,
+        "displacement": 41200,
+        "tpc": 52,
+        "lcf": -2.8,
+        "mtc": 520.556
+      },
+      {
+        "sarat": 10.4,
+        "displacement": 41720,
+        "tpc": 52.1,
+        "lcf": -2.9,
+        "mtc": 524.356
+      },
+      {
+        "sarat": 10.5,
+        "displacement": 42240,
+        "tpc": 52.2,
+        "lcf": -3,
+        "mtc": 528.156
+      },
+      {
+        "sarat": 10.6,
+        "displacement": 42760,
+        "tpc": 52.3,
+        "lcf": -3.1,
+        "mtc": 531.956
+      },
+      {
+        "sarat": 10.7,
+        "displacement": 43280,
+        "tpc": 52.4,
+        "lcf": -3.2,
+        "mtc": 535.756
+      },
+      {
+        "sarat": 10.8,
+        "displacement": 43800,
+        "tpc": 52.5,
+        "lcf": -3.3,
+        "mtc": 539.556
+      },
+      {
+        "sarat": 10.9,
+        "displacement": 44320,
+        "tpc": 52.6,
+        "lcf": -3.4,
+        "mtc": 543.356
+      },
+      {
+        "sarat": 11,
+        "displacement": 44840,
+        "tpc": 52.7,
+        "lcf": -3.5,
+        "mtc": 547.156
+      },
+      {
+        "sarat": 11.1,
+        "displacement": 45360,
+        "tpc": 52.8,
+        "lcf": -3.6,
+        "mtc": 550.956
+      },
+      {
+        "sarat": 11.2,
+        "displacement": 45880,
+        "tpc": 52.9,
+        "lcf": -3.7,
+        "mtc": 554.756
+      },
+      {
+        "sarat": 11.3,
+        "displacement": 46400,
+        "tpc": 53,
+        "lcf": -3.8,
+        "mtc": 558.556
+      },
+      {
+        "sarat": 11.4,
+        "displacement": 46920,
+        "tpc": 53.1,
+        "lcf": -3.9,
+        "mtc": 562.356
+      },
+      {
+        "sarat": 11.5,
+        "displacement": 47440,
+        "tpc": 53.2,
+        "lcf": -4,
+        "mtc": 566.156
+      },
+      {
+        "sarat": 11.6,
+        "displacement": 47960,
+        "tpc": 53.3,
+        "lcf": -4.1,
+        "mtc": 569.956
+      },
+      {
+        "sarat": 11.7,
+        "displacement": 48480,
+        "tpc": 53.4,
+        "lcf": -4.2,
+        "mtc": 573.756
+      },
+      {
+        "sarat": 11.8,
+        "displacement": 49000,
+        "tpc": 53.5,
+        "lcf": -4.3,
+        "mtc": 577.556
+      },
+      {
+        "sarat": 11.9,
+        "displacement": 49520,
+        "tpc": 53.6,
+        "lcf": -4.4,
+        "mtc": 581.356
+      },
+      {
+        "sarat": 12,
+        "displacement": 50040,
+        "tpc": 53.7,
+        "lcf": -4.5,
+        "mtc": 585.156
+      }
+    ]
+  },
+  "initial": {
+    "constant": 255.4
+  },
+  "lingkungan": {
+    "ombak": {
+      "amplitudo": 0.15,
+      "periode": 5
+    }
+  },
+  "final": {
+    "sarat": {
+      "haluan": {
+        "port": 10.1,
+        "starboard": 10.14
+      },
+      "tengah": {
+        "port": 10.31,
+        "starboard": 10.35
+      },
+      "buritan": {
+        "port": 10.58,
+        "starboard": 10.62
+      }
+    },
+    "densitas": 1.018,
+    "tangki": [
+      {
+        "id": "BALLAST",
+        "kelompok": "ballast",
+        "fluida": {
+          "jenis": "cairan",
+          "densitas": 1
+        },
+        "kalibrasi": [
+          {
+            "sounding": 0,
+            "volume": 0
+          },
+          {
+            "sounding": 1.2,
+            "volume": 120
+          },
+          {
+            "sounding": 3.1,
+            "volume": 350
+          },
+          {
+            "sounding": 6,
+            "volume": 780
+          }
+        ],
+        "sounding": 3.1
+      },
+      {
+        "id": "FW",
+        "kelompok": "freshWater",
+        "fluida": {
+          "jenis": "cairan",
+          "densitas": 1
+        },
+        "kalibrasi": [
+          {
+            "sounding": 0,
+            "volume": 0
+          },
+          {
+            "sounding": 1.4,
+            "volume": 60
+          },
+          {
+            "sounding": 2.9,
+            "volume": 180
+          },
+          {
+            "sounding": 5.5,
+            "volume": 420
+          }
+        ],
+        "sounding": 2.9
+      },
+      {
+        "id": "HFO",
+        "kelompok": "fuel",
+        "fluida": {
+          "jenis": "bahan-bakar",
+          "densitas15": 0.95,
+          "suhu": 45,
+          "koefisienMuai": 0.00065
+        },
+        "kalibrasi": [
+          {
+            "sounding": 0,
+            "volume": 0
+          },
+          {
+            "sounding": 2,
+            "volume": 310
+          },
+          {
+            "sounding": 3.6,
+            "volume": 880.32
+          },
+          {
+            "sounding": 7.5,
+            "volume": 1900
+          }
+        ],
+        "sounding": 3.6
+      },
+      {
+        "id": "MDO",
+        "kelompok": "fuel",
+        "fluida": {
+          "jenis": "bahan-bakar",
+          "densitas15": 0.86,
+          "suhu": 30,
+          "koefisienMuai": 0.00065
+        },
+        "kalibrasi": [
+          {
+            "sounding": 0,
+            "volume": 0
+          },
+          {
+            "sounding": 1,
+            "volume": 40
+          },
+          {
+            "sounding": 2.2,
+            "volume": 111.55
+          },
+          {
+            "sounding": 5,
+            "volume": 310
+          }
+        ],
+        "sounding": 2.2
+      },
+      {
+        "id": "LUBE",
+        "kelompok": "lubricant",
+        "fluida": {
+          "jenis": "cairan",
+          "densitas": 0.9
+        },
+        "kalibrasi": [
+          {
+            "sounding": 0,
+            "volume": 0
+          },
+          {
+            "sounding": 0.9,
+            "volume": 10
+          },
+          {
+            "sounding": 1.7,
+            "volume": 27.78
+          },
+          {
+            "sounding": 3.5,
+            "volume": 90
+          }
+        ],
+        "sounding": 1.7
+      },
+      {
+        "id": "OTHER",
+        "kelompok": "other",
+        "fluida": {
+          "jenis": "cairan",
+          "densitas": 1
+        },
+        "kalibrasi": [
+          {
+            "sounding": 0,
+            "volume": 0
+          },
+          {
+            "sounding": 0.4,
+            "volume": 3
+          },
+          {
+            "sounding": 0.9,
+            "volume": 10
+          },
+          {
+            "sounding": 2.5,
+            "volume": 55
+          }
+        ],
+        "sounding": 0.9
+      }
+    ]
+  }
+}

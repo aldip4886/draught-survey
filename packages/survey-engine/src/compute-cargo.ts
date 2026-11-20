@@ -1,5 +1,10 @@
 import { correctDraughts, type DraughtCorrection, type DraughtCorrectionInput } from "./draught-correction";
-import { correctedDisplacement, type CorrectedDisplacement, type HydrostaticRow } from "./hydrostatics";
+import {
+  correctedDisplacement,
+  interpolateHydrostatics,
+  type CorrectedDisplacement,
+  type HydrostaticRow,
+} from "./hydrostatics";
 import {
   cargoWeight,
   netDisplacement,
@@ -12,8 +17,9 @@ import {
 export interface ComputeCargoInput extends DraughtCorrectionInput {
   hydrostatics: {
     table: readonly HydrostaticRow[];
-    mtcPlus: number;
-    mtcMinus: number;
+    /** MTC pada QM +0,5 m dan −0,5 m. Bila kosong, diinterpolasi dari tabel (baris wajib punya mtc). */
+    mtcPlus?: number;
+    mtcMinus?: number;
     densityMeasured: number;
     densityTable: number;
   };
@@ -33,8 +39,13 @@ export interface ComputeCargoResult {
 /** Rantai penuh survey final: dari bacaan sarat sampai muatan (L1 langkah 1–16). */
 export function computeCargo(input: ComputeCargoInput): ComputeCargoResult {
   const draughts = correctDraughts(input);
+  const qm = draughts.quarterMean;
+  const mtcPlus = input.hydrostatics.mtcPlus ?? mtcAt(input.hydrostatics.table, qm + 0.5);
+  const mtcMinus = input.hydrostatics.mtcMinus ?? mtcAt(input.hydrostatics.table, qm - 0.5);
   const displacement = correctedDisplacement({
     ...input.hydrostatics,
+    mtcPlus,
+    mtcMinus,
     quarterMean: draughts.quarterMean,
     trueTrim: draughts.trueTrim,
     lbp: input.lbp,
@@ -50,4 +61,10 @@ export function computeCargo(input: ComputeCargoInput): ComputeCargoResult {
     netDisplacementInitial: netInitial,
     cargo: cargoWeight(netFinal, netInitial),
   };
+}
+
+function mtcAt(table: readonly HydrostaticRow[], draught: number): number {
+  const mtc = interpolateHydrostatics(table, draught).mtc;
+  if (mtc === undefined) throw new Error("Tabel hidrostatik tidak memuat MTC; berikan mtcPlus dan mtcMinus");
+  return mtc;
 }

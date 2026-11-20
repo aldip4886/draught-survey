@@ -151,3 +151,28 @@ Cek isi 26 issue: tidak ada yang menyatakan dependensi eksplisit ("blocked by" d
 - #13–#20 (Player 3D) bergantung pada stack R3F yang baru dinyatakan layak oleh #3 (spec: "Hanya bagian yang terbukti dipindahkan"). Tidak dimulai.
 - Yang tidak bergantung pada 3D dan bisa dilanjutkan: #21 (mode latihan/ujian), #22 (sesi lokal dan ekspor).
 - #8 (aset visual) juga menunggu #3.
+
+---
+
+## Sesi 5 — 2026-11-20, dicatat sesudah persiapan #3 (WIB)
+
+**Konteks:** pengguna meminta "siapkan pengujian langkah #3". #3 sendiri tidak ditutup: uji dilakukan manusia di perangkat.
+
+### 1. Yang disiapkan (branch `issue-3-persiapan-uji-gerbang`, PR #38, base `issue-2`)
+- **Mode uji buta** di prototipe (`?uji=1`): sarat sebenarnya diacak per percobaan dan disembunyikan; tombol di dalam dunia untuk headset; hasil tersimpan di localStorage dan diunduh sebagai JSON.
+- **Perekam fps** 30 detik: rata-rata, 1% low, minimum; flag apakah direkam di dalam sesi VR.
+- **`npm run analyze`**: menggabungkan berkas hasil, mencetak laporan Markdown, kode keluar 0/1.
+- **`npm run dev:https`** untuk WebXR di Quest lewat jaringan.
+- **Protokol** `docs/tests/uji-gerbang-3.md`: peralatan, prosedur per perangkat, skrip pembaca, langkah bila gagal, templat laporan, daftar periksa.
+- 16 test untuk logika penilaian (`src/uji.ts`).
+
+### 2. Temuan
+- **`vite --https` tidak dikenal di Vite 8**; ketahuan karena perintahnya dicoba, bukan diasumsikan. Diganti file konfigurasi terpisah, dan kini terbukti HTTPS 200.
+- **Resolusi pointer:** di desktop (1568 px, perahu 8 m) 1 piksel ≈ 0,9 cm pada zoom awal, jadi ±1 cm menuntut zoom. Klik di garis air pada air tenang memberi bacaan 10,58 m untuk sarat sebenarnya 10,57 m. Di VR belum ada zoom; protokol menyebut ukuran tanda ×1,5/×2 dan jarak perahu 6 m sebagai penyesuaian pertama.
+- **Browser uji hanya 1 fps** (tanpa GPU), jadi tidak ada angka fps nyata dari sesi pengembangan.
+
+### 3. Tafsiran yang perlu dikonfirmasi pengguna
+fps = rata-rata 30 s dan rekaman terburuk menentukan; Quest dihitung hanya di dalam VR; "dua orang" = ≥ 2 pembaca × ≥ 5 percobaan dengan semua percobaan dalam ±1 cm; parameter uji = ombak SKN-01 (0,15 m / 5 s), tanda ×1.
+
+### 4. Status
+- #3 tetap `ready-for-human`. Menunggu: Quest 3, Quest 2, laptop kantor standar, dua pembaca independen.

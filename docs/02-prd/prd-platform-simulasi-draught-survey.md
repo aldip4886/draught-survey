@@ -84,8 +84,8 @@ Platform terdiri dari empat aplikasi dalam satu sistem: Player, Portal Trainer, 
 
 | ID | Kebutuhan | Prioritas |
 | --- | --- | --- |
-| D-01 | Membuat kelas, menugaskan skenario, dan mengatur tenggat | MVP |
-| D-02 | Melihat hasil per peserta: akurasi, anomali ditemukan, waktu, jejak langkah | MVP |
+| D-01 | Membuat kelas, menugaskan skenario, dan mengatur tenggat | V1 |
+| D-02 | Melihat hasil per peserta: akurasi, anomali ditemukan, waktu, jejak langkah | V1 |
 | D-03 | Rekap per kelas dan per anomali (anomali mana yang paling sering terlewat) | V1 |
 | D-04 | Memutar ulang sesi peserta (replay) | V2 |
 | D-05 | Mengirim data ke LMS lewat xAPI atau SCORM | V1 |
@@ -94,7 +94,7 @@ Platform terdiri dari empat aplikasi dalam satu sistem: Player, Portal Trainer, 
 
 | ID | Kebutuhan | Prioritas |
 | --- | --- | --- |
-| A-01 | Kelola pengguna dan peran; login SSO | MVP |
+| A-01 | Kelola pengguna dan peran; login SSO | V1 |
 | A-02 | Kelola template kapal (model 3D + posisi tanda sarat + tangki) | MVP |
 | A-03 | Audit log semua perubahan skenario dan penilaian | V1 |
 
@@ -232,8 +232,8 @@ Estimasi durasi di bawah adalah perkiraan awal untuk tim kecil (2–3 developer,
 | Fase | Estimasi | Isi | Gerbang lanjut |
 | --- | --- | --- | --- |
 | 0. Prototipe | 4–6 minggu | `survey-engine` + unit test; prototipe M3 (membaca sarat di laut berombak) di headset dan desktop | Rumus lolos validasi surveyor; M3 berjalan ≥72 fps di headset (Quest 2 sebagai batas bawah) dan ≥50 fps di peramban desktop, dengan sarat terbaca ±1 cm oleh pembaca yang tidak terlibat |
-| 1. MVP | 3–4 bulan | Player (P-01–P-06), Portal Trainer dasar (T-01–T-05), kelas dan hasil (D-01–D-02), SSO; Skenario 1 dan 2 | Uji coba dengan 1 kelas; trainer berhasil membuat 1 skenario sendiri |
-| 2. V1 | 3 bulan | Dialog NPC, dokumen, berita acara, rubrik, pratinjau 3D, versi, xAPI/SCORM; Skenario 3 | Target metrik di Bagian 1 tercapai pada 2 angkatan |
+| 1. MVP | 3–4 bulan | Player (P-01–P-06), Portal Trainer dasar (T-01–T-05); sesi dan hasil disimpan lokal di perangkat peserta dengan ekspor berkas hasil berversi; Skenario 1 dan 2 | Uji coba dengan 1 kelas; trainer berhasil membuat 1 skenario sendiri |
+| 2. V1 | 3 bulan | Server dan penilaian di sisi server, kelas dan hasil peserta (D-01–D-02), SSO (A-01), dialog NPC, dokumen, berita acara, rubrik, pratinjau 3D, versi, xAPI/SCORM; Skenario 3 | Target metrik di Bagian 1 tercapai pada 2 angkatan |
 | 3. V2 | Berkelanjutan | Offline, multiuser, replay, pustaka aset, template kapal tambahan | Berdasarkan umpan balik |
 
 ## 8. Tiga skenario simulasi

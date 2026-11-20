@@ -14,3 +14,17 @@ Platform simulasi WebXR untuk pelatihan draught survey bagi pegawai Bea Cukai. B
 ## Glosarium
 
 Lihat Lampiran L3 kerangka materi.
+
+## Agent skills
+
+### Issue tracker
+
+Issue dan spec dicatat di GitHub Issues repo aldip4886/draught-survey (lewat `gh` CLI). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Lima label bawaan: needs-triage, needs-info, ready-for-agent, ready-for-human, wontfix. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: satu `GLOSSARY.md` + `docs/adr/` di root repo. See `docs/agents/domain.md`.

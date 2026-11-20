@@ -2,4 +2,5 @@
 
 - `01-kerangka-materi/` — kerangka materi, rumus, titik rawan, learning path VR
 - `02-prd/` — Product Requirements Document dan 3 skenario simulasi
+- `agents/` — konfigurasi skill agen (issue tracker, label triage, dokumen domain)
 - `adr/` — Architecture Decision Records (keputusan teknis penting, satu file per keputusan)

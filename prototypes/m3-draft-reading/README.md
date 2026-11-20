@@ -20,6 +20,10 @@ Di Quest: buka alamat jaringan lokal dari peramban headset (WebXR butuh HTTPS at
 - Query string untuk headset (tanpa slider): `?amp=0.6&period=6&scale=1.5&draught=10.33&dist=8`.
 - Di VR: arahkan pointer controller ke tanda lalu tekan trigger. Papan teks 3D di samping perahu menampilkan fps dan hasil kunci.
 
+## Mode uji (gerbang #3)
+
+`?uji=1` menyembunyikan sarat sebenarnya dan selisih, memakai ombak SKN-01 (0,15 m / 5 s), mengacak sarat sebenarnya tiap percobaan, merekam fps 30 detik (rata-rata, 1% low, min), dan menyimpan hasil ke localStorage untuk diunduh sebagai JSON. `npm run analyze -- <hasil.json> ...` menggabungkan berkas dan mencetak laporan lulus/gagal. `npm run dev:https` untuk WebXR di Quest lewat jaringan. Protokol lengkap: [`docs/tests/uji-gerbang-3.md`](../../docs/tests/uji-gerbang-3.md).
+
 ## Yang dibuktikan
 
 - Air (GLSL) dan gerak perahu/kapal (JS) memakai fungsi gelombang yang sama (`src/wave.ts`, konstanta cermin di `src/Water.tsx`): dua sinus bertumpuk (ombak + swell, air dalam).

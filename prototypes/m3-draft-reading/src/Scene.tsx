@@ -23,7 +23,11 @@ interface Props {
   lock: Lock | null;
   onLock: (reading: number) => void;
   onFps: (fps: number) => void;
+  /** Dipanggil tiap frame dengan lama frame (s); dipakai perekam fps. */
+  onFrame: (dt: number) => void;
   hudText: string;
+  /** Tombol di dalam dunia untuk mode uji (headset tanpa HTML). */
+  ujiButtons?: { onNewTrial: () => void; onToggleRecord: () => void; recordLabel: string };
 }
 
 function makeMarkTexture(scale: number): THREE.CanvasTexture {
@@ -105,7 +109,26 @@ function Ship({ params, markScale, lock, onLock }: Pick<Props, "params" | "markS
   );
 }
 
-function Boat({ params, onFps, hudText }: Pick<Props, "params" | "onFps" | "hudText">) {
+function WorldButton({ label, position, onClick }: { label: string; position: [number, number, number]; onClick: () => void }) {
+  return (
+    <group position={position} rotation={[0, 0.6, 0]}>
+      <mesh
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick();
+        }}
+      >
+        <planeGeometry args={[0.55, 0.13]} />
+        <meshBasicMaterial color="#0b5c8a" />
+      </mesh>
+      <Text position={[0, 0, 0.001]} fontSize={0.045} color="#ffffff">
+        {label}
+      </Text>
+    </group>
+  );
+}
+
+function Boat({ params, onFps, onFrame, hudText, ujiButtons }: Pick<Props, "params" | "onFps" | "onFrame" | "hudText" | "ujiButtons">) {
   const boat = useRef<THREE.Group>(null);
   const { camera, gl } = useThree();
   const look = useRef({ yaw: 0, pitch: -0.14, fov: 45 });
@@ -139,7 +162,8 @@ function Boat({ params, onFps, hudText }: Pick<Props, "params" | "onFps" | "hudT
     };
   }, [camera, gl]);
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
+    onFrame(delta);
     const p = params.current;
     const t = state.clock.elapsedTime;
     const b = boat.current;
@@ -184,6 +208,12 @@ function Boat({ params, onFps, hudText }: Pick<Props, "params" | "onFps" | "hudT
       <Text position={[-1.1, 0.9, -0.8]} rotation={[0, 0.6, 0]} fontSize={0.05} color="#ffffff" anchorX="left" outlineWidth={0.004}>
         {hudText}
       </Text>
+      {ujiButtons && (
+        <>
+          <WorldButton label="Percobaan baru" position={[-1.05, 0.55, -0.82]} onClick={ujiButtons.onNewTrial} />
+          <WorldButton label={ujiButtons.recordLabel} position={[-1.05, 0.38, -0.82]} onClick={ujiButtons.onToggleRecord} />
+        </>
+      )}
     </group>
   );
 }
@@ -197,7 +227,7 @@ export function Scene(props: Props) {
       <directionalLight position={[40, 80, 30]} intensity={1.8} />
       <Water params={props.params} />
       <Ship params={props.params} markScale={props.markScale} lock={props.lock} onLock={props.onLock} />
-      <Boat params={props.params} onFps={props.onFps} hudText={props.hudText} />
+      <Boat params={props.params} onFps={props.onFps} onFrame={props.onFrame} hudText={props.hudText} ujiButtons={props.ujiButtons} />
     </>
   );
 }

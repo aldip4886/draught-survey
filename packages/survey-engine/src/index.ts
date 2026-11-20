@@ -1,3 +1,5 @@
 export * from "./draught-correction";
-export { roundTo } from "./round";
 export * from "./hydrostatics";
+export * from "./deductibles";
+export * from "./compute-cargo";
+export { roundTo } from "./round";

@@ -1,7 +1,7 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
 import { XROrigin, useXRSessionVisibilityState } from "@react-three/xr";
-import { useEffect, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import type { Params } from "./params";
 import { waveHeight } from "./wave";
@@ -181,9 +181,12 @@ function Boat({ params, onFps, hudText }: Pick<Props, "params" | "onFps" | "hudT
       {/* Titik berdiri peserta di headset; di desktop kamera dipasang di sini. */}
       <XROrigin position={[0, 0.5, 0]} />
       {/* Papan info di dalam dunia, terbaca di headset. */}
-      <Text position={[-1.1, 0.9, -0.8]} rotation={[0, 0.6, 0]} fontSize={0.05} color="#ffffff" anchorX="left" outlineWidth={0.004}>
-        {hudText}
-      </Text>
+      {/* Font drei diambil dari CDN; Suspense lokal agar adegan tetap tampil bila CDN tidak terjangkau. */}
+      <Suspense fallback={null}>
+        <Text position={[-1.1, 0.9, -0.8]} rotation={[0, 0.6, 0]} fontSize={0.05} color="#ffffff" anchorX="left" outlineWidth={0.004}>
+          {hudText}
+        </Text>
+      </Suspense>
     </group>
   );
 }

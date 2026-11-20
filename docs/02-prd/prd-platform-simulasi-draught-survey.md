@@ -2,13 +2,13 @@
 
 Versi 20 November 2026 · Sumber: [Claude Doc](https://claude.ai/artifact/YDTLKojasmvsekWbL4Puj3)
 
-Platform web fullstack untuk melatih pegawai Bea Cukai melakukan dan menguji draught survey di VR, desktop, dan ponsel. Trainer dapat membuat skenario baru tanpa bantuan developer.
+Platform web fullstack untuk melatih pegawai Bea Cukai melakukan dan menguji draught survey langsung dari peramban web di desktop dan ponsel, tanpa headset VR. Headset VR (WebXR) menjadi pengalaman tambahan yang lebih imersif, bukan syarat. Trainer dapat membuat skenario baru tanpa bantuan developer.
 
 ## 1. Ringkasan
 
 **Masalah.** Pegawai jarang berkesempatan berlatih draught survey di kapal sungguhan. Akibatnya, mereka cenderung menerima hasil akhir laporan surveyor tanpa menguji komponennya. Selisih ratusan ton dapat lolos karena setiap manipulasi tampak masih dalam toleransi.
 
-**Solusi.** Simulasi kapal 3D yang bisa dijalankan di headset VR, desktop, dan ponsel. Peserta membaca sarat, mengambil sampel air, menyounding tangki, menghitung, dan menginvestigasi anomali. Trainer membuat dan memperbarui skenario lewat portal web.
+**Solusi.** Simulasi kapal 3D yang bisa dijalankan di peramban desktop dan ponsel, dan di headset VR bagi yang memilikinya. Peserta membaca sarat, mengambil sampel air, menyounding tangki, menghitung, dan menginvestigasi anomali. Trainer membuat dan memperbarui skenario lewat portal web.
 
 **Tujuan produk**
 
@@ -45,9 +45,13 @@ Platform terdiri dari empat aplikasi dalam satu sistem: Player, Portal Trainer, 
 
 ### 3.1 Player (peserta)
 
+**Prinsip akses tanpa headset.** Setiap skenario harus bisa diselesaikan sampai lulus di peramban web tanpa headset VR. Mode VR hanya menambah imersi dan tidak membuka isi atau penilaian yang tidak tersedia di peramban. Desktop menjadi jalur 3D penuh; ponsel memakai panorama 360° dan lembar kerja. Peserta cukup membuka tautan skenario di peramban, tanpa memasang aplikasi.
+
 | ID | Kebutuhan | Prioritas |
 | --- | --- | --- |
-| P-01 | Menjalankan skenario dalam mode VR (WebXR), desktop 3D, dan ponsel | MVP |
+| P-01 | Menjalankan seluruh skenario di peramban desktop dengan 3D penuh (mouse dan keyboard), tanpa headset | MVP |
+| P-01a | Menjalankan skenario di peramban ponsel: panorama 360° untuk membaca sarat dan alat ukur, serta lembar kerja | MVP |
+| P-01b | Menjalankan skenario dalam mode VR (WebXR) sebagai pilihan tambahan di peramban headset | MVP |
 | P-02 | Membaca sarat 6 titik dari perahu dengan ombak yang diatur skenario | MVP |
 | P-03 | Mengambil sampel air di beberapa kedalaman dan membaca hydrometer | MVP |
 | P-04 | Menyounding tangki dan membaca tabel kalibrasi | MVP |
@@ -216,9 +220,10 @@ Perubahan dari rekomendasi sebelumnya: hosting statis diganti aplikasi fullstack
 | Keamanan | SSO, kontrol akses berbasis peran, enkripsi saat transit dan saat disimpan, audit log |
 | Kerahasiaan konten | Katalog modus hanya terlihat oleh akun internal; konten tidak dapat diakses publik |
 | Data | Data disimpan di dalam negeri; cadangan harian; retensi hasil peserta mengikuti kebijakan diklat |
-| Aksesibilitas | Semua modul punya mode desktop/ponsel; teks dapat diperbesar; subtitle untuk dialog |
+| Akses tanpa headset | Semua skenario dapat diselesaikan penuh di peramban desktop dan ponsel, tanpa headset dan tanpa memasang aplikasi; mode VR hanya pelengkap |
+| Aksesibilitas | Teks dapat diperbesar; subtitle untuk dialog |
 | Bahasa | Antarmuka dan konten Bahasa Indonesia; istilah teknis tetap dalam bahasa Inggris dengan glosarium |
-| Perangkat | Headset dengan browser WebXR, Chrome/Edge desktop, Chrome Android, Safari iOS (mode non-VR) |
+| Perangkat | Chrome/Edge desktop (3D penuh), Chrome Android dan Safari iOS (panorama dan lembar kerja), serta headset dengan browser WebXR (opsional) |
 
 ## 7. Rencana rilis
 
@@ -226,7 +231,7 @@ Estimasi durasi di bawah adalah perkiraan awal untuk tim kecil (2–3 developer,
 
 | Fase | Estimasi | Isi | Gerbang lanjut |
 | --- | --- | --- | --- |
-| 0. Prototipe | 4–6 minggu | `survey-engine` + unit test; prototipe M3 (membaca sarat di laut berombak) di headset dan desktop | Rumus lolos validasi surveyor; M3 berjalan ≥72 fps |
+| 0. Prototipe | 4–6 minggu | `survey-engine` + unit test; prototipe M3 (membaca sarat di laut berombak) di headset dan desktop | Rumus lolos validasi surveyor; M3 berjalan ≥72 fps di headset (Quest 2 sebagai batas bawah) dan ≥50 fps di peramban desktop, dengan sarat terbaca ±1 cm oleh pembaca yang tidak terlibat |
 | 1. MVP | 3–4 bulan | Player (P-01–P-06), Portal Trainer dasar (T-01–T-05), kelas dan hasil (D-01–D-02), SSO; Skenario 1 dan 2 | Uji coba dengan 1 kelas; trainer berhasil membuat 1 skenario sendiri |
 | 2. V1 | 3 bulan | Dialog NPC, dokumen, berita acara, rubrik, pratinjau 3D, versi, xAPI/SCORM; Skenario 3 | Target metrik di Bagian 1 tercapai pada 2 angkatan |
 | 3. V2 | Berkelanjutan | Offline, multiuser, replay, pustaka aset, template kapal tambahan | Berdasarkan umpan balik |
@@ -253,7 +258,7 @@ Tiga skenario bertingkat: menghitung tanpa gangguan, menemukan manipulasi kecil 
 - Tanda sarat: d_F 3,0 m, d_A 6,0 m, d_M 0,5 m
 - Densitas 1,018; deductibles 1.480,00 t; net displacement initial 8.105,40 t
 
-**Alur:** naik kapal → baca 6 titik dari perahu → sampling densitas → sounding 6 kelompok tangki → hitung di lembar kerja → serahkan hasil.
+**Alur:** layar briefing (naik kapal ditunda ke V1) → baca 6 titik dari perahu → sampling densitas → sounding 6 kelompok tangki → hitung di lembar kerja → serahkan hasil.
 
 **Kunci jawaban:** muatan 31.573,30 t. Lulus bila hasil 31.415,43–31.731,17 t (±0,5%).
 
@@ -321,7 +326,7 @@ Dampak gabungan: **927,05 t (1,77%)**, hampir sama dengan "shortage" yang diklai
 | Laut dan ombak berat di headset standalone | Frame rate turun, peserta pusing | Prototipe M3 lebih dulu; LOD dan shader sederhana untuk perangkat lemah |
 | Kesalahan rumus atau tanda koreksi | Kunci jawaban salah, kepercayaan hilang | `survey-engine` divalidasi surveyor bersertifikat; unit test untuk setiap rumus |
 | Trainer kesulitan mengisi tabel hidrostatik | Skenario baru jarang dibuat | Impor CSV dengan contoh templat; template kapal sudah berisi tabel lengkap |
-| Ketersediaan headset terbatas | Peserta tidak merata | Semua modul punya mode desktop/ponsel |
+| Ketersediaan headset terbatas | Peserta tidak merata | Semua skenario dapat diselesaikan penuh di peramban tanpa headset; VR hanya pelengkap |
 | Konten modus bocor ke pihak luar | Pelaku belajar celah pengawasan | Akses hanya akun internal; audit log; watermark pada ekspor dokumen |
 
 **Pertanyaan terbuka**

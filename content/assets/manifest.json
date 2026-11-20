@@ -1,0 +1,72 @@
+{
+  "$comment": "Peta peran aset ke berkas. file=null berarti pakai aset buatan-sendiri (prosedural). Ganti dengan menaruh GLB di content/assets/models/ lalu isi 'file'. Lihat README.md untuk kontrak.",
+  "version": 1,
+  "units": "meter",
+  "models": {
+    "ship-hull": {
+      "file": null,
+      "anchors": [
+        "anchor_deck_center",
+        "anchor_waterline_ref"
+      ],
+      "polyBudget": 40000,
+      "license": "buatan-sendiri"
+    },
+    "ship-deck": {
+      "file": null,
+      "anchors": [
+        "anchor_tank_ballast",
+        "anchor_tank_freshwater",
+        "anchor_tank_hfo",
+        "anchor_tank_mdo",
+        "anchor_tank_lube",
+        "anchor_tank_other",
+        "anchor_teleport_deck_1"
+      ],
+      "polyBudget": 30000,
+      "license": "buatan-sendiri"
+    },
+    "survey-boat": {
+      "file": null,
+      "anchors": [
+        "anchor_viewer_seat",
+        "anchor_sampler_mount"
+      ],
+      "polyBudget": 8000,
+      "license": "buatan-sendiri"
+    },
+    "water-sampler": {
+      "file": null,
+      "anchors": ["anchor_rope_attach"],
+      "polyBudget": 2000,
+      "license": "buatan-sendiri"
+    },
+    "hydrometer": {
+      "file": null,
+      "anchors": [],
+      "polyBudget": 1500,
+      "license": "buatan-sendiri"
+    },
+    "thermometer": {
+      "file": null,
+      "anchors": [],
+      "polyBudget": 1000,
+      "license": "buatan-sendiri"
+    },
+    "sounding-tape": {
+      "file": null,
+      "anchors": [],
+      "polyBudget": 1500,
+      "license": "buatan-sendiri"
+    }
+  },
+  "textures": {
+    "sky": { "file": null, "license": "buatan-sendiri" },
+    "hull-paint": { "file": null, "license": "buatan-sendiri" },
+    "deck": { "file": null, "license": "buatan-sendiri" }
+  },
+  "panoramas": {
+    "boat": { "file": null, "license": "buatan-sendiri" },
+    "deck": { "file": null, "license": "buatan-sendiri" }
+  }
+}

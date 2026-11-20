@@ -41,6 +41,14 @@ export const scenarioSchema = z
     id: z.string().regex(/^SKN-\d{2}$/, "id berbentuk SKN-NN"),
     judul: z.string().min(1),
     kegiatan: z.enum(["muat", "bongkar"]),
+    /** Teks layar briefing. Ditulis trainer; tidak boleh memuat nilai benar. */
+    briefing: z
+      .object({
+        ringkasan: z.string().min(1),
+        kondisi: z.string().min(1),
+        tugas: z.array(z.string().min(1)).min(1),
+      })
+      .optional(),
     /** Penanda wajib: data sintetis belum divalidasi SME. */
     validasi: z.object({ smeValidated: z.boolean(), catatan: z.string().min(1) }),
     kapal: z.object({

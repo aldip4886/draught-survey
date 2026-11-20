@@ -37,3 +37,7 @@ assets/source/**/*.blend
 
 # Skills installer temp files
 skills-lock.json.lock*
+
+# Next.js
+next-env.d.ts
+*.tsbuildinfo

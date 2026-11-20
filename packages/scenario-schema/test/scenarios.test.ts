@@ -8,7 +8,7 @@ import {
   STEP_ORDER,
   type Submission,
 } from "@draught-survey/survey-engine";
-import { scenarioSchema, scenarioToCargoInput, scenarioToScoringKey } from "../src";
+import { scenarioSchema, scenarioToCargoInput, scenarioToScoringKey, toPublicScenario } from "../src";
 
 const dir = join(dirname(fileURLToPath(import.meta.url)), "../../../content/scenarios");
 const files = readdirSync(dir).filter((f) => f.endsWith(".json"));
@@ -106,5 +106,24 @@ describe("SKN-01: penilaian dari berkas skenario", () => {
     const r = scoreSubmission(key, s);
     expect(r.criteria.find((c) => c.id === "draught")!.score).toBe(20.83);
     expect(r.criteria.find((c) => c.id === "density")!.score).toBe(0);
+  });
+});
+
+describe("toPublicScenario", () => {
+  const scenario = scenarioSchema.parse(load("skn-01.json"));
+  const pub = toPublicScenario(scenario);
+
+  it("tidak memuat nilai benar sarat, densitas, dan sounding", () => {
+    const text = JSON.stringify(pub);
+    expect(pub).not.toHaveProperty("final");
+    expect(text).not.toMatch(/"sarat":\{"haluan"/);
+    for (const t of pub.tangki) expect(t).not.toHaveProperty("sounding");
+  });
+
+  it("tetap memuat dokumen yang dibutuhkan untuk menghitung", () => {
+    expect(pub.hidrostatik.baris.length).toBe(scenario.hidrostatik.baris.length);
+    expect(pub.tangki.map((t) => t.id)).toEqual(scenario.final.tangki.map((t) => t.id));
+    expect(pub.tangki[0]!.kalibrasi.length).toBeGreaterThan(1);
+    expect(pub.briefing?.tugas.length).toBeGreaterThan(0);
   });
 });

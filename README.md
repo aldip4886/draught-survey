@@ -41,6 +41,17 @@ Terpasang di `.claude/skills/` dan aktif otomatis saat Claude Code dibuka di fol
 
 Langkah pertama yang disarankan: jalankan `/setup-matt-pocock-skills` sekali untuk mengatur issue tracker dan lokasi dokumen.
 
+## Menjalankan
+
+```
+pnpm install
+pnpm dev          # Player di http://localhost:3000
+pnpm test         # semua paket (Turborepo)
+pnpm typecheck
+```
+
+Prototipe di `prototypes/` berdiri sendiri (npm), di luar workspace.
+
 ## Tech stack (ringkas)
 
 TypeScript · pnpm workspaces + Turborepo · Next.js · three.js + React Three Fiber + @react-three/xr · Zustand · XState · inkjs · PostgreSQL + Drizzle · MinIO · Keycloak · Vitest + Playwright. Rincian di PRD bagian 5.

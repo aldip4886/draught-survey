@@ -2,6 +2,16 @@
   "id": "SKN-01",
   "judul": "Final Survey Pertama",
   "kegiatan": "muat",
+  "briefing": {
+    "ringkasan": "MV Samudra Lestari (Supramax, LBP 180,0 m) selesai muat batubara di dermaga khusus batubara. Anda melakukan final survey untuk menetapkan berat muatan.",
+    "kondisi": "Pagi hari, laut tenang dengan swell ringan. Kru kooperatif.",
+    "tugas": [
+      "Baca sarat di enam titik (haluan, tengah, buritan; kiri dan kanan).",
+      "Ukur densitas air di sekitar lambung.",
+      "Sounding enam kelompok tangki (ballast, air tawar, HFO, MDO, pelumas, lainnya).",
+      "Hitung berat muatan di lembar kerja, lalu serahkan."
+    ]
+  },
   "validasi": {
     "smeValidated": false,
     "catatan": "Data sintetis disusun agar menghasilkan angka contoh rujukan L1 (31.573,30 t). Belum divalidasi SME."

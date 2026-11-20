@@ -11,7 +11,7 @@
     "validate": "vite-node src/cli.ts"
   },
   "dependencies": {
-    "@draught-survey/survey-engine": "file:../survey-engine",
+    "@draught-survey/survey-engine": "workspace:*",
     "zod": "^3.23.0"
   },
   "devDependencies": {

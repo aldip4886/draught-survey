@@ -4,7 +4,7 @@
   "kegiatan": "muat",
   "validasi": {
     "smeValidated": false,
-    "catatan": "Data sintetis disusun agar menghasilkan angka contoh rujukan L1 (31.573,30 t). Belum divalidasi SME."
+    "catatan": "Data sintetis untuk latihan; belum divalidasi SME."
   },
   "kapal": {
     "nama": "MV Samudra Lestari",

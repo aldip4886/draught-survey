@@ -33,6 +33,12 @@ describe("SKN-01", () => {
     expect(scenario.validasi.catatan).toMatch(/SME/);
   });
 
+  it("teks yang tampil ke peserta tidak membocorkan kunci muatan", () => {
+    const cargo = computeCargo(scenarioToCargoInput(scenario)).cargo;
+    const shown = JSON.stringify([scenario.judul, scenario.validasi.catatan, scenario.kapal.nama]);
+    for (const form of ["31.573,30", "31573.3", "31573,3", String(Math.round(cargo))]) expect(shown).not.toContain(form);
+  });
+
   it("dengan bacaan benar menghasilkan muatan 31.573,30 t (±0,01 t)", () => {
     const r = computeCargo(scenarioToCargoInput(scenario));
     expect(Math.abs(r.cargo - 31573.3)).toBeLessThanOrEqual(0.01);

@@ -5,3 +5,4 @@ export * from "./compute-cargo";
 export { roundTo } from "./round";
 export * from "./waves";
 export * from "./tanks";
+export * from "./scoring";

@@ -52,3 +52,41 @@ Cek isi 26 issue: tidak ada yang menyatakan dependensi eksplisit ("blocked by" d
 ### 6. Permintaan dokumentasi
 - Pengguna meminta percakapan didokumentasikan dalam file `.md`, dengan timestamp per sesi, dan diakumulasikan di akhir pengerjaan tiap issue.
 - Hasilnya adalah file ini.
+
+---
+
+## Sesi 2 — 2026-11-20, dicatat sesudah fase 0 selesai (WIB)
+
+**Konteks:** pengguna meminta "Commit log ini dan langsung mulai dengan fase 0". Fase 0 = #7, #4→#5→#6, #2 (dan #3 yang butuh pengguna).
+
+### 1. Commit log dan kendala push
+- Log dicommit lokal: `0a329ea`.
+- `git push origin main` **ditolak oleh pengaman otomatis** Claude Code. Tidak dicoba ulang dengan cara lain. Semua pekerjaan fase 0 tinggal di branch lokal; belum ada yang di-push dan belum ada PR.
+
+### 2. Branch dan commit (lokal)
+
+| Issue | Branch | Commit | Catatan |
+|---|---|---|---|
+| #7 | `issue-7-adr-nilai-benar-di-klien` | `f90dd8a` | ADR `docs/adr/0001-nilai-benar-terbaca-di-klien.md`; D-01, D-02, A-01 dipindah ke V1; baris rilis MVP/V1 di PRD §7 disesuaikan |
+| #4 | `issue-4-engine-koreksi-sarat` | `fc7f001` | `correctDraughts`; scaffolding paket (vitest + TypeScript) |
+| #5 | `issue-5-engine-hidrostatik` (bertingkat di atas #4) | `566d823` | interpolasi tabel, FTC, STC, koreksi densitas |
+| #6 | `issue-6-engine-deductibles` (bertingkat di atas #5) | `9272960` | deductibles, net displacement, constant, muatan, `computeCargo` |
+| #2 | `issue-2-prototipe-sarat` (dari main) | `61919a4` | Vite + R3F, ombak sinus, kunci bacaan, tombol VR |
+
+### 3. Keputusan teknis penting
+- **Pembulatan mengikuti L1.** Contoh L1 membulatkan sarat terkoreksi ke mm, FTC dan STC ke 0,01 t, sebelum dijumlahkan. Tanpa itu hasil menyimpang sekitar 0,01 t di displacement dan QM (10,3375 vs 10,338). Pembulatan ada di `roundTo` dan dipakai di tiap langkah.
+- **Fixture L1 satu sumber** di `packages/survey-engine/test/fixtures/l1.ts`; semua test mengimpor dari sana. `computeCargo` menghasilkan 31.573,30 t (±0,01 t). 39 test lulus, typecheck bersih.
+- **Koefisien muai bahan bakar tidak ditebak.** Kerangka materi hanya menyebut "koreksi suhu". `fuelWeight` memakai ρ_t = ρ15 × (1 − α(t − 15)) dengan α wajib diberikan pemanggil. **Perlu dikonfirmasi reviewer SME** formula dan koefisien yang dipakai kelas.
+- **MTC untuk STC.** L1 memberi MTC pada QM ±0,5 m langsung (541,0 dan 503,0), bukan dari tabel; engine menerimanya sebagai input.
+- **Prototipe:** air digambar di GPU (GLSL) dan gerak perahu/kapal di JS memakai rumus gelombang yang sama (konstanta dicermin). Fungsi gelombang deterministik untuk engine tetap tugas #10.
+
+### 4. Verifikasi prototipe
+- Dibuka di Chrome (localhost): adegan tampil, klik tanda sarat mengunci bacaan, garis merah dan selisih muncul, tanpa error konsol. Peringatan "Multiple instances of Three.js" diperbaiki dengan `resolve.dedupe`; papan teks 3D diperkecil; sudut pandang awal diturunkan agar garis air terlihat.
+- **Tidak terverifikasi:** fps (lingkungan tanpa GPU, terbaca 1 fps), keterbacaan ±1 cm, WebXR di Quest. Itu cakupan #3 dan butuh pengguna di perangkat.
+
+### 5. Kendala alat
+- Beberapa perintah shell panjang berisi heredoc gagal di tahap parsing; file ditulis ulang dengan alat Write. Tidak ada efek pada hasil.
+
+### 6. Status
+- #2, #4, #5, #6, #7 selesai secara lokal (belum di-push, belum PR, issue belum tertutup di GitHub).
+- #3 menunggu pengguna menguji prototipe di perangkat.

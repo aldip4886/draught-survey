@@ -90,3 +90,40 @@ Cek isi 26 issue: tidak ada yang menyatakan dependensi eksplisit ("blocked by" d
 ### 6. Status
 - #2, #4, #5, #6, #7 selesai secara lokal (belum di-push, belum PR, issue belum tertutup di GitHub).
 - #3 menunggu pengguna menguji prototipe di perangkat.
+
+---
+
+## Sesi 3 — 2026-11-20, dicatat sesudah fase 1 (WIB)
+
+**Konteks:** pengguna meminta mendorong semua branch dan membuka PR (dilakukan: PR #27–#32), menjalankan preview prototipe lalu menghentikannya, dan "lanjutkan ke fase berikutnya". Fase 1 = #9, #10, #26, #11; #8 (aset visual) **ditahan** sampai #3 lulus, agar aset tidak dibuat untuk pendekatan yang gagal.
+
+### 1. PR fase 0
+- Enam PR dibuka: #27 (#7), #28 (#4), #29 (#5, base `issue-4`), #30 (#6, base `issue-5`), #31 (#2), #32 (log). Urutan merge rantai engine: #28 → #29 → #30.
+- Push `main` yang sempat ditolak pengaman otomatis berhasil setelah pengguna memerintahkannya secara eksplisit.
+
+### 2. Preview prototipe
+- Dev server dijalankan di `localhost:5173` dan alamat Wi-Fi, lalu dihentikan atas permintaan. WebXR di Quest butuh HTTPS atau `localhost` (via `adb reverse`).
+
+### 3. Fase 1 (branch lokal, bertingkat; belum di-push)
+
+| Issue | Branch | Commit | Isi |
+|---|---|---|---|
+| #10 | `issue-10-engine-gelombang` (di atas #6) | — | `waves.ts`: gelombang, gerak lambung, `peakTroughBias`, `markPoint`; 52 test engine |
+| #9 | `issue-9-scenario-skn-01` (di atas #10) | `0b7ffb9` | skema Zod, `content/scenarios/skn-01.json`, kalibrasi tangki di engine, MTC diinterpolasi dari tabel |
+| #11 | `issue-11-engine-skor-rubrik` (di atas #9) | `25804ab` | `scoring.ts`; 79 test engine, 12 test schema |
+| #26 | `issue-26-loader-manifest-aset` (di atas #11) | `95c65cf` | paket `asset-contract`: validator GLB, loader dengan fallback, tata letak tanda sarat; 20 test |
+
+### 4. Temuan dan keputusan
+- **Bug prototipe (#2) ditemukan dan diperbaiki:** roll dan pitch kapal bertanda terbalik (lambung miring menjauhi ombak). Perbaikan di commit `2e49e2a` pada branch `issue-2`; PR #31 ikut ter-update.
+- **Konvensi sumbu** kini tertulis di engine: +x haluan, +z starboard, +y atas.
+- **Nilai puncak-lembah:** bias garis air (rata-rata maks+min relatif sarat air tenang) dihitung engine; di SKN-01 (amp 0,15 m, periode 5 s) bias ≤ 1 cm di keenam titik. Data SKN-01 menyimpan nilai benar yang dibaca peserta (angka L1); sarat air tenang diturunkan lewat `stillDraughtFor`.
+- **Data SKN-01 sintetis:** tabel hidrostatik linear 9,0–12,0 m (baris 10,3 dan 10,4 sama dengan L1; MTC linear sehingga MTC QM±0,5 = 541,0/503,0), enam tangki dengan volume yang menghasilkan 350/180/820/95/25/10 t. HFO dan MDO memakai suhu 45 °C dan 30 °C dengan α = 0,00065 (**asumsi, perlu SME**). Ditandai `smeValidated: false`.
+- **Asumsi sub-bobot rubrik (perlu keputusan):** spec hanya memberi 25 poin untuk "urutan dan tanda koreksi". Dipakai 10 (urutan) + 5 (tanda perpendikular) + 5 (FTC) + 5 (STC). Lulus = muatan dalam ±0,5% (31.415,43–31.731,17 t), terlepas dari skor total.
+- **Validator aset:** manifest diperluas dengan `maxExtentMeters`, `lengthAxis`, `baselineOrigin`; angka rentang ukuran model (mis. lambung 100–300 m) adalah taksiran. Ukuran tekstur belum diperiksa; model diperiksa dari JSON glTF saja.
+
+### 5. Kendala
+- Tidak ada GLB sungguhan di repo; tes memakai GLB sintetis (JSON saja). Loader belum tersambung ke Player karena Player belum ada.
+
+### 6. Status
+- #7, #4, #5, #6, #2 punya PR (#27–#31). #10, #9, #11, #26 selesai lokal, belum di-push.
+- Menunggu: #3 (uji perangkat oleh pengguna), lalu #8.

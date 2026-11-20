@@ -9,7 +9,7 @@
     "preview": "vite preview --host",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "dev:https": "vite --host --https",
+    "dev:https": "vite --host --config vite.https.config.ts",
     "analyze": "vite-node scripts/analyze.ts --"
   },
   "dependencies": {

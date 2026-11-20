@@ -176,3 +176,12 @@ fps = rata-rata 30 s dan rekaman terburuk menentukan; Quest dihitung hanya di da
 
 ### 4. Status
 - #3 tetap `ready-for-human`. Menunggu: Quest 3, Quest 2, laptop kantor standar, dua pembaca independen.
+
+---
+
+## Sesi 6 — 2026-11-20, serah-terima (WIB)
+
+- Pengguna menjalankan uji #3 dan menyatakan "#3 OK" **tanpa menyerahkan data**; tercatat sebagai pernyataan pengguna, bukan hasil terverifikasi agen. Issue #3 belum ditutup dan belum diberi hasil.
+- `npm run dev:https` dijalankan atas permintaan (HTTPS 200, alamat Wi-Fi tersedia), lalu dihentikan.
+- #13 + #14 dimulai di `issue-13-14-player-baca-sarat` (di atas `issue-12`); baru dependensi three dan R3F (WIP, di-push). Rancangan lengkap di `docs/HANDOFF.md`.
+- Atas permintaan "push ke main, catat progress agar bisa dilanjutkan di perangkat lain": `docs/HANDOFF.md` di-push ke `main` (`5aa9bdf`). Hanya dokumen; PR berkode belum di-merge.

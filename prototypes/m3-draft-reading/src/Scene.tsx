@@ -69,8 +69,8 @@ function Ship({ params, markScale, lock, onLock }: Pick<Props, "params" | "markS
     const pitch = (0.4 * (waveHeight(30, 0, t, p) - waveHeight(-30, 0, t, p))) / 60;
     g.position.set(0, -p.trueDraught + heave, 0);
     g.rotation.set(0, 0, 0);
-    g.rotateX(roll);
-    g.rotateZ(-pitch);
+    g.rotateX(-roll);
+    g.rotateZ(pitch);
   });
 
   const plateH = MARK_RANGE.to - MARK_RANGE.from;

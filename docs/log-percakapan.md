@@ -108,7 +108,7 @@ Cek isi 26 issue: tidak ada yang menyatakan dependensi eksplisit ("blocked by" d
 
 | Issue | Branch | Commit | Isi |
 |---|---|---|---|
-| #10 | `issue-10-engine-gelombang` (di atas #6) | — | `waves.ts`: gelombang, gerak lambung, `peakTroughBias`, `markPoint`; 52 test engine |
+| #10 | `issue-10-engine-gelombang` (di atas #6) | `e2973f2` | `waves.ts`: gelombang, gerak lambung, `peakTroughBias`, `markPoint`; 52 test engine |
 | #9 | `issue-9-scenario-skn-01` (di atas #10) | `0b7ffb9` | skema Zod, `content/scenarios/skn-01.json`, kalibrasi tangki di engine, MTC diinterpolasi dari tabel |
 | #11 | `issue-11-engine-skor-rubrik` (di atas #9) | `25804ab` | `scoring.ts`; 79 test engine, 12 test schema |
 | #26 | `issue-26-loader-manifest-aset` (di atas #11) | `95c65cf` | paket `asset-contract`: validator GLB, loader dengan fallback, tata letak tanda sarat; 20 test |

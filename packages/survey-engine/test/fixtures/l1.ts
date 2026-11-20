@@ -44,3 +44,23 @@ export const L1_HYDRO = {
     displacementDensityCorrected: 41158.7,
   },
 } as const;
+
+/** L1 langkah 13-16: deductibles, net displacement, dan muatan akhir. */
+export const L1_CARGO = {
+  deductibles: [
+    { category: "ballast", weight: 350 },
+    { category: "freshWater", weight: 180 },
+    { category: "fuel", weight: 820 },
+    { category: "fuel", weight: 95 },
+    { category: "lubricant", weight: 25 },
+    { category: "other", weight: 10 },
+  ],
+  lightship: 7850,
+  constant: 255.4,
+  expected: {
+    deductiblesTotal: 1480.0,
+    netDisplacementFinal: 39678.7,
+    netDisplacementInitial: 8105.4,
+    cargo: 31573.3,
+  },
+} as const;
